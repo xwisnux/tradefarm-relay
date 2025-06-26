@@ -28,24 +28,20 @@ wss.on('connection', (ws) => {
 
 goldiWS.on('open', () => {
   console.log('Connected to Gold-i');
-
   goldiWS.send(JSON.stringify({
     action: "subscribe",
     username: "tradefarm",
     password: "(+om47(hneT3l,G!\\B!-",
-    // Add instruments if required
   }));
 });
 
 goldiWS.on('message', (msg) => {
-  latestData = msg.toString();
+  const latestData = msg.toString();
   console.log('From Gold-i:', latestData);
+});
 
-  wss.clients.forEach(client => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(latestData);
-    }
-  });
+goldiWS.on('error', (err) => {
+  console.error('❌ Error connecting to Gold-i:', err);
 });
 
 // Start server on Railway's assigned port
