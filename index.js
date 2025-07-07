@@ -7,7 +7,7 @@ const cert = Buffer.from(process.env.CERT, 'utf-8');
 const key = Buffer.from(process.env.KEY, 'utf-8');
 
 // Gold-i WebSocket
-const goldiURL = 'wss://host.tradefarm.matrixnet.gold-i.com:40007';
+const goldiURL = 'wss://instrument-prices.tradefarm.io';
 
 const goldiWS = new WebSocket(goldiURL, {
   cert,
